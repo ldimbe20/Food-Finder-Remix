@@ -4,7 +4,6 @@ const db = new PrismaClient();
 async function seed() {
   const kody = await db.user.create({
     data: {
-      name: "Adam Sandler",
       username: "kody",
       // this is a hashed version of "twixrox"
       passwordHash:
