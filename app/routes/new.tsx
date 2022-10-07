@@ -33,25 +33,27 @@ export default function NewProfileRoute() {
     <div className = "container">
       <h4>Add friends profile</h4>
       <form method="post">
-        <div>
-          <label>
-            Name: <input type="text" name="name" />
-          </label>
-        </div>
-        <div>
-          <label>
-            Allergy: <input type="text" name="personalAllergy" />
-          </label>
-        </div>
-        <div>
-          <label>
-            Notes: <textarea name="notes" />
-          </label>
-        </div>
-        <div>
-          <button type="submit" className="button">
-            Add
-          </button>
+        <div className = "container">
+          <div>
+            <label className ="form-label">
+              Name: <input type="text" name="name" />
+            </label>
+          </div>
+          <div>
+            <label className ="form-label">
+              Allergy: <input type="text" name="personalAllergy" />
+            </label>
+          </div>
+          <div>
+            <label className ="form-label">
+              Notes: <textarea name="notes" />
+            </label>
+          </div>
+          <div>
+            <button type="submit" className="button">
+              Add
+            </button>
+          </div>
         </div>
       </form>
     </div>
