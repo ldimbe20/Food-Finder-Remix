@@ -236,10 +236,12 @@
   /* forms */
   
   form {
-    display: flex;
-    flex-direction: column;
+    display: flex; 
+    flex-direction: row; 
     gap: 1rem;
     width: 100%;
+    justify-content: center;
+    align-content: center;
   }
   
   fieldset {
@@ -310,8 +312,7 @@
   [data-light] [type="url"],
   [data-light] [type="color"],
   [data-light] textarea {
-    color: var(--color-background);
-    background-color: hsl(0 0% 0% / 10%);
+    color: hsl(187deg 11% 74%);
   }
   
   [type="text"][aria-invalid="true"],
