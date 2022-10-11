@@ -6,22 +6,27 @@ import ProfileList from "~/components/profile_lists";
 import type{ IProfile } from "~/interfaces/profiles";
 import stylesUrl from "~/styles/index.css";
 import { db } from "~/utils/db.server";
+import { getUserId } from "~/utils/session.server";
 
 export const links: LinksFunction = () => {
   return [{ rel: "stylesheet", href: stylesUrl }];
 };
 
-export const loader: LoaderFunction = async () => {
+export const loader: LoaderFunction = async ({request}) => {
+  const currentUserId = await getUserId(request)
   const data = await db.profile.findMany({
       take: 5,
-      select: { id: true, name: true, personalAllergy: true, notes: true },
+      select: { id: true, name: true, personalAllergy: true, notes: true, userId: true},
       orderBy: { createdAt: "desc" },
     })
-  return json(data);
+  return json({data, currentUserId});
   };
 
 export default function Profiles() {
-  const data = useLoaderData<Array<IProfile>>();
+  const { data, currentUserId } = useLoaderData<{
+    data: Array<IProfile>;
+    currentUserId: string;
+  }>();
 
     return  (
         <div className="profiles-layout">
@@ -39,7 +44,7 @@ export default function Profiles() {
             </div>
           </header>
           <div className="profiles-outlet">
-            <ProfileList data={data}></ProfileList>
+            <ProfileList data={data} currentUserId={currentUserId}></ProfileList>
             <Outlet />
           </div>
         </div>
