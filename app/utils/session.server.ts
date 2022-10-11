@@ -94,3 +94,12 @@ export async function logout(request: Request) {
     },
   });
 }
+
+export async function getProfileById(profileId: string) {
+  const response = await fetch(
+    `profiles/${profileId}`
+  );
+}
+
+
+

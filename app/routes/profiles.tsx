@@ -1,13 +1,28 @@
-import type { LinksFunction } from "@remix-run/node";
-import { Outlet, Link } from "@remix-run/react";
-
-import stylesUrl from "~/styles/profiles.css";
+import { Link, Outlet } from "@remix-run/react";
+import type{ LinksFunction, LoaderFunction } from "@remix-run/node";
+import{ json } from "@remix-run/node";
+import { useLoaderData } from "@remix-run/react";
+import ProfileList from "~/components/profile_lists";
+import type{ IProfile } from "~/interfaces/profiles";
+import stylesUrl from "~/styles/index.css";
+import { db } from "~/utils/db.server";
 
 export const links: LinksFunction = () => {
   return [{ rel: "stylesheet", href: stylesUrl }];
 };
 
+export const loader: LoaderFunction = async () => {
+  const data = await db.profile.findMany({
+      take: 5,
+      select: { id: true, name: true, personalAllergy: true, notes: true },
+      orderBy: { createdAt: "desc" },
+    })
+  return json(data);
+  };
+
 export default function Profiles() {
+  const data = useLoaderData<Array<IProfile>>();
+
     return  (
         <div className="profiles-layout">
           <header className="profiles-header">
@@ -23,22 +38,10 @@ export default function Profiles() {
               </h1>
             </div>
           </header>
-          <main className="profiles-main">
-            <div className="container">
-              <div className="profiles-list">
-                {/* <p>Here are a few more profiles to check out:</p>
-                  <li>
-                    <Link to="some-joke-id">Hippo</Link>
-                  </li> */}
-                <Link to="/new" className="button">
-                  Add your own
-                </Link>
-              </div>
-              <div className="profiles-outlet">
-                <Outlet />
-              </div>
-            </div>
-          </main>
+          <div className="profiles-outlet">
+            <ProfileList data={data}></ProfileList>
+            <Outlet />
+          </div>
         </div>
       );
   }

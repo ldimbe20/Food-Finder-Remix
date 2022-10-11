@@ -35,7 +35,7 @@
   }
   
   :focus {
-    outline: var(--color-links) solid 2px;
+    outline: #56d5ab solid 2px;
     outline-offset: 2px;
   }
   
@@ -43,14 +43,14 @@
   body {
     padding: 0;
     margin: 0;
-    color: var(--color-foreground);
+    color:#56d5ab;
     background-color: white;
   }
   
   [data-light] {
     --color-invalid: hsl(356, 70%, 39%);
-    color: var(--color-background);
-    background-color: var(--color-foreground);
+    color: #56d5ab;
+    background-color: #56d5ab;
   }
   
   body {
@@ -62,12 +62,12 @@
   }
   
   a {
-    color: var(--color-links);
+    color:#56d5ab;
     text-decoration: none;
   }
   
   a:hover {
-    color: var(--color-links-hover);
+    color: #249a72;
     text-decoration: underline;
   }
   
@@ -86,7 +86,7 @@
   h4,
   h5,
   h6 {
-    font-family: var(--font-display);
+    font-family: #56d5ab;
     margin: 0;
   }
   
@@ -140,6 +140,39 @@
     margin-left: auto;
     padding-top: 24px;
   }
+
+  .profiles-name
+{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;  
+  --gutter: 16px;
+  width: 1024px;
+  max-width: calc(100% - var(--gutter) * 2);
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.profiles-content
+{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;  
+  --gutter: 16px;
+  width: 1024px;
+  max-width: calc(100% - var(--gutter) * 2);
+  margin-right: auto;
+  margin-left: auto;
+  padding-top: 24px;
+}
+
+.profiles-padding
+{ 
+  margin-right: 3px;
+  padding-left:20px;
+  padding-top: 5px;
+}
+
   
   /* buttons */
   
