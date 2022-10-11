@@ -1,7 +1,20 @@
+
+ .profiles-container {
+  --gutter: 16px;
+  width: 1024px;
+  max-width: calc(100% - var(--gutter) * 2);
+  margin-right: auto;
+  margin-left: auto;
+  padding-top: 24px;
+  padding-left: 24px;
+}
+
+
+
 .profiles-layout {
     display: flex;
-    flex-direction: column;
-    min-height: inherit;
+    flex-direction: row;
+    padding-right:3rem;
   }
   
   .profiles-header {
@@ -77,6 +90,7 @@
   
     .profiles-header .logo-medium {
       display: block;
+      background-color:aquamarine
     }
   
     .profiles-main {

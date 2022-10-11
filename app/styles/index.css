@@ -56,7 +56,7 @@ nav ul a:hover {
 
 @media print, (min-width: 640px) {
   h1 span {
-    font-size: 6rem;
+    font-size: 3rem;
   }
 
   nav ul {
