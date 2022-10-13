@@ -68,22 +68,22 @@ export default function IndividualProfileRoute() {
 
 	return (
 		<>
-    <div>
-			<div className='profiles-content'>
-				<h5>
+    	<div className="container">
+		  <div className='profiles-content'>
+			<h5>
 					Name: {data.profile.name} <br></br>
 					Allergy: {data.profile.personalAllergy}
 					<br></br>
 					Additional Notes: {data.profile.notes}
-				</h5>
-			</div>
-      <form method='post'>
-					<input type='hidden' name='_method' value='delete' />
-					<button type='submit' className='button'>
-						Delete
-					</button>
-				</form>
-    </div>
+			</h5>
+		  </div>
+      	  <form method='post'>
+			<input type='hidden' name='_method' value='delete' />
+			  <button type='submit' className='button'>
+				Delete
+			  </button>
+		  </form>
+    	</div>
 		</>
 	);
 }

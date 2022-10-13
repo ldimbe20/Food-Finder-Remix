@@ -32,7 +32,7 @@ export default function NewProfileRoute() {
   return (
     <div className = "container">
       <h4>Add friends profile</h4>
-      <form method="post">
+      <form method="post" className = "new_form">
         <div className = "container">
           <div>
             <label className ="form-label">
