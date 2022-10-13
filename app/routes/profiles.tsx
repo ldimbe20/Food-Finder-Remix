@@ -27,7 +27,7 @@ export default function Profiles() {
     data: Array<IProfile>;
     currentUserId: string;
   }>();
-
+  const currentUserData = data.filter(profile => profile.userId === currentUserId)
     return  (
         <div className="profiles-layout">
           <header className="profiles-header">
@@ -44,7 +44,7 @@ export default function Profiles() {
             </div>
           </header>
           <div className="profiles-outlet">
-            <ProfileList data={data} currentUserId={currentUserId}></ProfileList>
+            <ProfileList currentUserData={currentUserData}></ProfileList>
             <Outlet />
           </div>
         </div>
