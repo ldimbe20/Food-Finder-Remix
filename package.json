@@ -14,7 +14,8 @@
     "bcryptjs": "^2.4.3",
     "multiselect-react-dropdown": "^2.0.25",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-select": "^5.5.0"
   },
   "devDependencies": {
     "@remix-run/dev": "^1.7.2",

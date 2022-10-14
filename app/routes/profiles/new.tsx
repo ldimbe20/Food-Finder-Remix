@@ -1,11 +1,10 @@
 import {  json} from "@remix-run/node";
 import type{ ActionFunction, LoaderFunction } from "@remix-run/node";
 import { redirect } from "@remix-run/node";
-// import { Form } from "@remix-run/react";
 import { db } from "~/utils/db.server";
 import { requireUserId } from "~/utils/session.server";
 import { useLoaderData } from "@remix-run/react";
-import Multiselect from 'multiselect-react-dropdown';
+import type{ IFoodRestrictionCategory } from "~/interfaces/foodRestrictionCategory";
 
 
 
@@ -45,7 +44,7 @@ export const action: ActionFunction = async ({
 
 export default function NewProfileRoute() {
   const foodRestrictionCategory = useLoaderData<{
-    data: string;
+    data: Array<IFoodRestrictionCategory>;
   }>();
   return (
     <div className = "container">
@@ -67,7 +66,7 @@ export default function NewProfileRoute() {
               Notes: <textarea name="notes" />
             </label>
           </div>
-          {/* <div>
+          <div>
             <label>
               Select a Food Restriction Category:
             </label>
@@ -89,23 +88,8 @@ export default function NewProfileRoute() {
                 ))}
               </select>
             </div>
-          </div> */}
-          <div>
-          <div>
-          <Multiselect
-            isObject={false}
-            onKeyPressFn={function noRefCheck(){}}
-            onRemove={function noRefCheck(){}}
-            onSearch={function noRefCheck(){}}
-            onSelect={function noRefCheck(){}}
-            options={[
-              'Option 1',
-              'Option 2',
-              'Option 3',
-              'Option 4',
-              'Option 5'
-            ]}/>
           </div>
+          <div>
           <button type="submit" className="button">
               Add
           </button>
