@@ -28,4 +28,23 @@ model Profile {
   notes    String
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
+  restrictionsOnProfiles RestrictionsOnProfiles[]
+}
+
+
+
+model FoodRestrictionCategory {
+  id                  String                     @id @default(uuid())
+  name                String
+  profileRestrictions RestrictionsOnProfiles[]
+}
+
+// LINK OR JOIN TABLE
+model RestrictionsOnProfiles {
+  profileId                      String
+  foodRestrictionCategoryId      String
+  foodRestrictionCategory        FoodRestrictionCategory @relation(fields: [foodRestrictionCategoryId], references: [id], onDelete: Cascade)
+  profileFoodRestrictionCategory Profile                 @relation(fields: [profileId], references: [id], onDelete: Cascade)
+
+  @@id([profileId, foodRestrictionCategoryId])
 }

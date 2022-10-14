@@ -1,8 +1,20 @@
-import type { ActionFunction } from "@remix-run/node";
+import {  json} from "@remix-run/node";
+import type{ ActionFunction, LoaderFunction } from "@remix-run/node";
 import { redirect } from "@remix-run/node";
-
+// import { Form } from "@remix-run/react";
 import { db } from "~/utils/db.server";
 import { requireUserId } from "~/utils/session.server";
+import { useLoaderData } from "@remix-run/react";
+import Multiselect from 'multiselect-react-dropdown';
+
+
+
+export const loader: LoaderFunction = async () => {
+  const data = await db.foodRestrictionCategory.findMany({
+      orderBy: { name: "asc" },
+    })
+  return json(data);
+  };
 
 export const action: ActionFunction = async ({
   request,
@@ -12,6 +24,7 @@ export const action: ActionFunction = async ({
   const name = form.get("name")
   const notes = form.get("notes")
   const personalAllergy = form.get("personalAllergy");
+  const foodRestrictionCategory = form.get("foodRestrictionCategory");
   if (
     typeof name !== "string" ||
     typeof notes !== "string" || 
@@ -28,7 +41,12 @@ export const action: ActionFunction = async ({
 
 
 
+
+
 export default function NewProfileRoute() {
+  const foodRestrictionCategory = useLoaderData<{
+    data: string;
+  }>();
   return (
     <div className = "container">
       <h4>Add friends profile</h4>
@@ -49,10 +67,48 @@ export default function NewProfileRoute() {
               Notes: <textarea name="notes" />
             </label>
           </div>
+          {/* <div>
+            <label>
+              Select a Food Restriction Category:
+            </label>
+            <div className="form-label">
+              <select
+                id="foodRestrictionCategoryId"
+                name="foodRestrictionCategory"
+                defaultValue={""}
+                style={{ maxWidth: 300 }}
+                className="form-select"
+              >
+                <option value="" disabled>
+                Pick Food Restriction
+                </option>
+                {foodRestrictionCategory.map((category) => (
+                  <option key={category.id} value={category.id}>
+                    {category.name}
+                  </option>
+                ))}
+              </select>
+            </div>
+          </div> */}
           <div>
-            <button type="submit" className="button">
+          <div>
+          <Multiselect
+            isObject={false}
+            onKeyPressFn={function noRefCheck(){}}
+            onRemove={function noRefCheck(){}}
+            onSearch={function noRefCheck(){}}
+            onSelect={function noRefCheck(){}}
+            options={[
+              'Option 1',
+              'Option 2',
+              'Option 3',
+              'Option 4',
+              'Option 5'
+            ]}/>
+          </div>
+          <button type="submit" className="button">
               Add
-            </button>
+          </button>
           </div>
         </div>
       </form>
