@@ -4,5 +4,6 @@ name: string;
 personalAllergy: string;
 notes: string;
 userId: string;
+foodRestrictionCategory:[]
 }
 
